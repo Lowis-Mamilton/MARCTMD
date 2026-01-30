@@ -1,0 +1,236 @@
+:root {
+  --ok: #16a34a;
+  --warn: #dc2626;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --card: #ffffff;
+  --bg: #f6f7fb;
+  --shadow: 0 8px 24px rgba(2, 6, 23, 0.08);
+  --radius: 14px;
+  --img-max-h: 70vh;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, "Microsoft JhengHei", "PingFang TC", Arial;
+}
+.wrap {
+  max-width: 1100px;
+  margin: 14px auto;
+  padding: 0 10px;
+}
+h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+}
+.stage {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 10px;
+  overflow: hidden; /* 防止圖片凸出 */
+}
+.media-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* Smaller category buttons */
+.category-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cat-btn {
+  padding: 8px 10px;
+  min-width: 110px;
+  font-size: 13px;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #3b82f6;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+}
+.cat-btn.active {
+  outline: 2px solid rgba(59, 130, 246, .35);
+}
+@media (max-height: 800px) {
+  .cat-btn {
+    padding: 6px 8px;
+    min-width: 100px;
+    font-size: 12px;
+    border-radius: 8px;
+  }
+  .category-group {
+    gap: 6px;
+  }
+}
+
+.field-wrap {
+  width: 100%;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.media {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+#fieldImg {
+  display: block;
+  width: 100%; /* 圖片隨容器縮放 */
+  height: auto;
+  max-height: var(--img-max-h);
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+#overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+button {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 14px;
+  transition: transform .05s ease, filter .15s ease;
+}
+button:hover {
+  filter: brightness(1.05);
+}
+button:active {
+  transform: translateY(1px);
+}
+.btn-add {
+  background: var(--ok);
+  color: #fff;
+}
+.btn-del {
+  background: var(--warn);
+  color: #fff;
+}
+.btn-save {
+  background: orange; /* 改橘色 */
+  color: #fff;
+}
+
+.panel {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 10px;
+}
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 10px;
+  min-width: 0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+th, td {
+  padding: 7px 6px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+th {
+  color: var(--muted);
+  font-weight: 700;
+}
+.color-dot {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.15);
+  vertical-align: middle;
+}
+
+.aside label {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.aside input {
+  width: 100%;
+  max-width: 100%;
+  font-size: 15px;
+  padding: 8px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  outline: none;
+}
+.aside {
+  overflow: hidden;
+}
+.aside .help {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+.badge {
+  display: inline-block;
+  padding: 3px 6px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #3730a3;
+  font-size: 11px;
+  font-weight: 700;
+}
+.status {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Mobile layout: stack category buttons on top */
+@media (max-width: 768px) {
+  .media-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .category-group {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .cat-btn {
+    min-width: auto;
+    flex: 1 0 auto;
+  }
+  .panel {
+    grid-template-columns: 1fr;
+  }
+}
